@@ -1,0 +1,32 @@
+<nav class="navbar navbar-expand-lg navbar-light bg-light">
+    <a class="navbar-brand" routerLink="/">EmployeeMaster</a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup"
+        aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+        <div class="navbar-nav">
+            <div class="col">
+                <div ngbDropdown class="d-inline-block">
+                    <button class="btn btn-outline" id="dropdownBasic1" ngbDropdownToggle
+                        [routerLinkActive]="['active']" routerLink="/employees">Employees</button>
+                    <div ngbDropdownMenu aria-labelledby="dropdownBasic1">
+                        <button ngbDropdownItem>Add Employee</button>
+                    </div>
+                </div>
+            </div>
+            <div class="col">
+                <div ngbDropdown class="d-inline-block">
+                    <button class="btn btn-outline" id="dropdownBasic1" ngbDropdownToggle
+                        [routerLinkActive]="['active']" routerLink="/companies">Companies</button>
+                    <div ngbDropdownMenu aria-labelledby="dropdownBasic1">
+                        <button ngbDropdownItem>Add Company</button>
+                    </div>
+                </div>
+            </div>
+            <!-- <a class="nav-item nav-link" [routerLinkActive]="['active']" routerLink="/employees">Employees<span
+                    class="sr-only">(current)</span></a>
+            <a class="nav-item nav-link" [routerLinkActive]="['active']" routerLink="/companies">Companies</a> -->
+        </div>
+    </div>
+</nav>

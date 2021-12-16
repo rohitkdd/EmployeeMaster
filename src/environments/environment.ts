@@ -3,6 +3,9 @@
 // The list of file replacements can be found in `angular.json`.
 
 export const environment = {
+
+  EMPLOYEES_ENDPOINT: 'https://retoolapi.dev/ojyU6L/employees',
+  COMPANIES_ENDPOINT: 'https://retoolapi.dev/hhp7Oo/companies',
   production: false
 };
 
