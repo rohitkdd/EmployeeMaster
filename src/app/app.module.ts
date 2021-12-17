@@ -8,6 +8,7 @@ import { FooterComponent } from './components/shared/footer/footer.component';
 import { LayoutComponent } from './layout/layout.component';
 import { HttpClientModule } from '@angular/common/http';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import { CompanyNamePipe } from './pipes/company-name.pipe';
 
 @NgModule({
   declarations: [

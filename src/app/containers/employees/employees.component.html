@@ -1,4 +1,15 @@
 <div class="mt-2">
+
+    <div class="container-fluid">
+        <div class="alert alert-success" *ngIf="hasEmployeeDeleted || hasEmployeeUpdated">
+            {{message}}
+        </div>
+        <div class="alert alert-danger" *ngIf="isDeletionUnsuccessful">
+            {{message}}
+        </div>
+    </div>
+
+
     <table class="table table-striped">
         <thead>
             <tr>
@@ -23,10 +34,10 @@
                 <td>{{ employee?.mobile }}</td>
                 <td>{{ employee?.position }}</td>
                 <!-- pipe to be implemented -->
-                <td>{{ employee?.companyId }}</td>
+                <td>{{ employee?.companyId | companyName }}</td>
                 <!-- pipe to be implemented -->
                 <td>
-                    <button class="btn btn-outline"><i class="fa fa-edit mr-auto"></i></button>
+                    <button class="btn btn-outline" (click)="editEmployee(employee)"><i class="fa fa-edit mr-auto"></i></button>
                     <button class="btn btn-outline" (click)="deleteEmployee(employee?.id)"><i
                             class="fa fa-trash"></i></button>
                 </td>
@@ -52,13 +63,12 @@
         </select>
     </div>
 
-    <div class="alert alert-success" *ngIf="hasEmployeeDeleted">
-        Employee deleted successfully.
-    </div>
-    <div class="alert alert-danger" *ngIf="isDeletionUnsuccessful">
-        Error in deleting, please try again after some time.
-    </div>
-
+    
 </div>
 
 <!-- Employee Details -->
+<div class="employee-details-wrapper mt-2"  *ngIf="selectedEmployee">
+    <h2 class="text-center"> Edit Employee Details </h2>
+    <hr>
+    <app-employee-details *ngIf="selectedEmployee" [details]="selectedEmployee" (employeeUpdated)="employeeUpdated()" (closeEdit)="toggleEditView()"></app-employee-details>
+</div>

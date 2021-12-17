@@ -1,8 +1,9 @@
+import { NgbDate } from '@ng-bootstrap/ng-bootstrap';
 export class Employee {
     id: number;
-    dob: string;
+    dob: any;
     email: string;
-    gender: boolean;
+    gender: any;
     mobile: string;
     address: string;
     fullName: string;

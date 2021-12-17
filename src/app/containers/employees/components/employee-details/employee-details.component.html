@@ -1,0 +1,179 @@
+<!-- <div class="employee-details d-flex">
+    <form [formGroup]="employeeDetailsForm">
+        <div class="form-row">
+            <div class="form-group col-md-4">
+                <label for="firstName">First Name</label>
+                <input type="text" id="firstName" formControlName="firstName">
+            </div>
+            <div class="form-group col-md-4">
+                <label for="lastName">Last Name</label>
+                <input type="text" id="lastName" formControlName="lastName" >
+            </div>
+        </div>
+
+        <div class="form-row">
+            <div class="col-md-6">
+                <label for="dob">Date of birth</label>
+                <input type="text" id="dob" formControlName="dob">
+            </div>
+            <div class="col-md-6">
+                <label for="gender">Gender</label>
+                <input type="text" id="gender" formControlName="gender">
+            </div>
+        </div>
+
+        <div class="form-row">
+            <div class="col-md-6">
+                <label for="mobile">Mobile No.</label>
+                <input type="text" id="mobile" formControlName="mobile">
+            </div>
+            <div class="col-md-6">
+                <label for="address">Address</label>
+                <input type="text" id="address" formControlName="address">
+            </div>
+        </div>
+
+        <div class="form-row">
+            <div class="col-md-6">
+                <label for="position">Position</label>
+                <input type="text" id="position" formControlName="position">
+            </div>
+            <div class="col-md-6">
+                <label for="company">Company</label>
+                <input type="text" id="company" formControlName="company">
+            </div>
+        </div>
+    </form>
+</div> -->
+<div class="container-fluid">
+    <form [formGroup]="employeeDetailsForm" (ngSubmit)="submitEmployeeDetails()">
+        <div class="form-row">
+            <div class="col-md-4 mb-3">
+                <label for="firstName">First name</label>
+                <input type="text" class="form-control" formControlName="firstName" id="firstName" placeholder="First name"
+                    required>
+                <div *ngIf="isFormSubmitted && employeeDetailsForm?.controls?.firstName?.errors">
+                    <div class="text-danger" *ngIf="employeeDetailsForm?.controls?.firstName?.errors?.required">
+                        Please provide your first name
+                    </div>
+                    <div class="text-danger" *ngIf="!employeeDetailsForm?.controls?.firstName?.errors?.required && employeeDetailsForm?.controls?.firstName?.errors?.pattern">
+                        Please enter appropriate value
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4 mb-3">
+                <label for="lastName">Last name</label>
+                <input type="text" class="form-control" formControlName="lastName" id="lastName" placeholder="Last name"
+                    required>
+                <div *ngIf="isFormSubmitted && employeeDetailsForm?.controls?.lastName?.errors">
+                    <div class="text-danger" *ngIf="employeeDetailsForm?.controls?.lastName?.errors?.required">
+                        Please provide your last name
+                    </div>
+                    <div class="text-danger" *ngIf="!employeeDetailsForm?.controls?.lastName?.errors?.required && employeeDetailsForm?.controls?.lastName?.errors?.pattern">
+                        Please enter appropriate value
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-3 mb-3">
+                <label for="email">Email</label>
+                <input type="text" class="form-control" formControlName="email" id="email" placeholder="Email" required>
+                <div *ngIf="isFormSubmitted && employeeDetailsForm?.controls?.email?.errors">
+                    <div class="text-danger" *ngIf="employeeDetailsForm?.controls?.email?.errors?.required">
+                        Please provide your email address
+                    </div>
+                    <div class="text-danger" *ngIf="!employeeDetailsForm?.controls?.email?.errors?.required && employeeDetailsForm?.controls?.email?.errors?.pattern">
+                        Please enter a valid email
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="form-row">
+            <div class="col-md-4 mb-3">
+                <label for="gender">Gender</label>
+                <div class="d-flex">
+                    <div class="custom-control custom-radio mr-2">
+                        <input type="radio" id="male" formControlName="gender" name="gender" value="true"
+                            class="custom-control-input">
+                        <label class="custom-control-label" for="male">Male</label>
+                    </div>
+                    <div class="custom-control custom-radio">
+                        <input type="radio" id="female" formControlName="gender" name="gender" value="false"
+                            class="custom-control-input">
+                        <label class="custom-control-label" for="female">Female</label>
+                    </div>
+                </div>
+                <div *ngIf="isFormSubmitted && employeeDetailsForm?.controls?.gender?.errors">
+                    <div class="text-danger" *ngIf="employeeDetailsForm?.controls?.gender?.errors?.required">
+                        Please choose an appropriate value
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4 mb-3">
+                <label for="dateOfBirth">Date of Birth</label>
+                <input class="form-control" formControlName="dateOfBirth" id="dateOfBirth"
+                    placeholder="Date of birth" placeholder="yyyy-mm-dd" name="dp" 
+                    ngbDatepicker #d="ngbDatepicker" required (click)="d.toggle()" [maxDate]="maxDate" [minDate]="minDate">
+                <div *ngIf="isFormSubmitted && employeeDetailsForm?.controls?.dateOfBirth?.errors">
+                    <div class="text-danger" *ngIf="employeeDetailsForm?.controls?.dateOfBirth?.errors?.required">
+                        Please select date of birth
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-3 mb-3">
+                <label for="address">Address</label>
+                <input type="text" class="form-control" formControlName="address" id="address" placeholder="Address"
+                    required>
+                <div *ngIf="isFormSubmitted && employeeDetailsForm?.controls?.address?.errors">
+                    <div class="text-danger" *ngIf="employeeDetailsForm?.controls?.address?.errors?.required">
+                        Please provide your address
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="form-row">
+            <div class="col-md-4 mb-3">
+                <label for="mobileNumber">Mobile No.</label>
+                <input type="text" class="form-control" formControlName="mobile" id="mobileNumber" placeholder="Mobile No."
+                    required>
+                <div *ngIf="isFormSubmitted && employeeDetailsForm?.controls?.mobile?.errors">
+                    <div class="text-danger" *ngIf="employeeDetailsForm?.controls?.mobile?.errors?.required">
+                        Please enter a mobile number
+                    </div>
+                    <div class="text-danger" *ngIf="!employeeDetailsForm?.controls?.mobile?.errors?.required && (employeeDetailsForm?.controls?.mobile?.errors?.pattern || employeeDetailsForm?.controls?.mobile?.errors?.minlength)">
+                        Please enter a valid mobile number
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4 mb-3">
+                <label for="company">Company</label>
+                <select class="custom-select" name="company" id="companyName" formControlName="company">
+                    <option value="">Select Company</option>
+                    <option *ngFor="let company of companies" [ngValue]="company?.id">{{company?.compaName}}</option>
+                </select>
+                <div *ngIf="isFormSubmitted && employeeDetailsForm?.controls?.company?.errors">
+                    <div class="text-danger" *ngIf="employeeDetailsForm?.controls?.company?.errors?.required">
+                        Please select a company
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-3 mb-3">
+                <label for="position">Position</label>
+                <input type="text" class="form-control" formControlName="position" id="position" placeholder="Position"
+                    required>
+                <div *ngIf="isFormSubmitted && employeeDetailsForm?.controls?.position?.errors">
+                    <div class="text-danger" *ngIf="employeeDetailsForm?.controls?.position?.errors?.required">
+                        Please enter a position
+                    </div>
+                    <div class="text-danger" *ngIf="!employeeDetailsForm?.controls?.position?.errors?.required && employeeDetailsForm?.controls?.position?.errors?.pattern">
+                        Please enter a valid position
+                    </div>
+                </div>
+            </div>
+    
+        </div>
+        <div class="actions mt-3">
+            <button class="btn btn-secondary mr-3" type="button" (click)="hideEmployeeDetails()">Back to Top</button>
+            <button class="btn btn-primary" type="submit">Submit form</button>
+        </div>
+    </form>
+</div>
